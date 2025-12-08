@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker Fundamentals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans p-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-6 text-center text-blue-700">Docker Fundamentals</h1>
+
+```
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-2">Concepts Overview</h2>
+  <ul class="space-y-2">
+    <li><strong>Image:</strong> A read-only template used to create containers.</li>
+    <li><strong>Container:</strong> A running instance of an image, isolated and executable.</li>
+    <li><strong>Network:</strong> Connects containers so they can communicate.</li>
+    <li><strong>Volume:</strong> Persistent storage that containers can use and share.</li>
+    <li><strong>Registry:</strong> A server to store and distribute Docker images (like Docker Hub).</li>
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Images</h2>
+  <ul class="space-y-2">
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker pull ubuntu</code> — Download an image from Docker Hub.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker images</code> — List local Docker images.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker rmi image_name</code> — Remove a specific image.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker build -t my-image .</code> — Build a Docker image from a Dockerfile.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker image prune</code> — Remove dangling images.</li>
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Containers</h2>
+  <ul class="space-y-2">
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker run -it ubuntu</code> — Run a container interactively.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker ps</code> — List running containers.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker ps -a</code> — List all containers.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker stop container_id</code> — Stop a running container.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker start container_id</code> — Start a stopped container.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker restart container_id</code> — Restart a container.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker rm container_id</code> — Remove a container.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker exec -it container_id bash</code> — Open a shell in a running container.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker container prune</code> — Remove all stopped containers.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker rm $(docker ps -a -q)</code> — Remove all containers at once.</li>
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Networks</h2>
+  <ul class="space-y-2">
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker network ls</code> — List Docker networks.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker network create my-network</code> — Create a new network.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker network inspect my-network</code> — Show network details.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker run --network my-network nginx</code> — Connect a container to a network.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker network prune</code> — Remove all unused networks.</li>
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Volumes</h2>
+  <ul class="space-y-2">
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker volume ls</code> — List Docker volumes.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker volume create my-volume</code> — Create a new volume.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker run -v my-volume:/app ubuntu</code> — Mount a volume in a container.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker volume rm my-volume</code> — Remove a volume.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker volume prune</code> — Remove all unused volumes.</li>
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Registries</h2>
+  <ul class="space-y-2">
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker login</code> — Log in to Docker Hub.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker tag my-image username/my-image:latest</code> — Tag an image for a registry.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker push username/my-image:latest</code> — Push an image to Docker Hub.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker pull username/my-image:latest</code> — Pull an image from Docker Hub.</li>
+  </ul>
+</section>
+
+<section class="mb-10">
+  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Cleanup Commands</h2>
+  <ul class="space-y-2">
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker system prune</code> — Remove all stopped containers, unused networks, dangling images, and build cache.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker system prune -a</code> — Remove all unused containers, networks, images (not just dangling), and build cache.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker rm $(docker ps -a -q)</code> — Remove all containers.</li>
+    <li><code class="bg-gray-200 px-2 py-1 rounded">docker rmi $(docker images -q)</code> — Remove all images.</li>
+  </ul>
+</section>
+
+<footer class="text-center text-gray-500 mt-12 text-sm">
+  &copy; Made with 💙 for educational use only
+</footer>
+```
+
+  </div>
+</body>
+</html>
